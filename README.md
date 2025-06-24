@@ -20,7 +20,7 @@
 
 1. **Клонировать репозиторий**:
    ```bash
-   git clone https://github.com/your_username/garden.git
+   git clone https://github.com/adjapsandal/Garden_guide.git
    cd garden
    ```
 
