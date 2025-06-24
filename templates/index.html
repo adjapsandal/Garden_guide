@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+      <title>Главная</title>
+    <meta  name="description"  content="Сайт предназначен для облегчения поиска всей информации о растениях для сада/огорода " >
+</head>
+
+<body>
+  <header>
+  {% include 'includes/header.html' %}
+</header>
+
+<section class ="scene">
+  <img src="/static/img/glavnaya.jpg">
+    <div class="scene-content">
+      <h1>Путеводитель —верный помощник богатого урожая</h1>
+        <div class="btns">
+          <form action="/catalog">
+          <button class="button-1">Каталог</button>
+          </form>
+          <form action="/forum">
+          <button class="button-2">Форум</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+<footer> {% include 'includes/footer.html' %}
+</footer>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/sort.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сорт</title>
+</head>
+
+<body>
+        {% include 'includes/header.html' %}
+<div class="container">
+        <div class="content">
+                <div class="left-column">
+                        <div class="form-container">
+                        <div class="image">
+                                <img src="{{ sort.plant_image_url }}"
+                                    alt="{{ sort.plant_name }}">
+                        </div>
+                        <h2>Благоприятные даты<h2>
+                        <h3>Посадка</h3>
+                        <p>{{ sort.date_seed }}</p>
+                        <h3>Сбор урожая</h3>
+                        <p>{{ sort.date_harvest }}</p>
+                        </div>  
+                </div>
+
+                <div class="right-column">
+                        <div class="card__title">
+                            <h1>{{ sort.plant_name }}, </h1>
+                            <h2>{{ sort.crop_name }}</h2>
+                            <form action="{{ url_for('toggle_favourite') }}" method="post" style="display:inline-block; margin:0; padding:0;">
+                                <input type="hidden" name="plant_num" value="{{ sort.plant_num }}">
+                                <input type="hidden" name="region" value="{{ selected_region }}">
+                                {% if sort.plant_num in favourites %}
+                                        <input type="hidden" name="action" value="remove">
+                                        <button type="submit" class="izbr"><img src="/static/img/star-1.png" alt="Удалить из избранного"></button>
+                                {% else %}
+                                        <input type="hidden" name="action" value="add">
+                                        <button type="submit" class="izbr"><img src="/static/img/star-2.png" alt="Добавить в избранное"></button>
+                                {% endif %}
+                        </form>
+                        </div>
+                        <p>{{ sort.details }}</p>
+                </div>
+        </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+html {
+  box-sizing: border-box;
+ }
+ *,
+ *::after,
+ *::before {
+  box-sizing: inherit;
+ }
+ a {
+  text-decoration: none;
+ }
+ body {
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  font-family: "Montserrat", sans-serif; 
+ }
+.page-container {
+  max-width: 1190px;
+  margin: 0 auto;
+  padding: 20px;
+}
+h1 {
+  font-size: 32px;
+  font-weight: 900;
+  color: #F0832C;
+  margin-bottom: 10px;
+}
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #F0832C;
+  margin-bottom: 15px;
+}
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #F0832C;
+  margin: 20px 0 10px;
+}
+section {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 15px;
+}
+form label {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  color: #333;
+}
+form input[type="text"],
+form textarea,
+form select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: "Montserrat", sans-serif;
+}
+form textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+form button {
+  padding: 10px 25px;
+  background-color: #F0832C;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+form button:hover {
+  background-color: #d87226;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+table thead {
+  background-color: #F0832C;
+}
+table thead th {
+  color: #fff;
+  padding: 12px 15px;
+  text-align: left;
+}
+table tbody td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.page-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.page-container ul li {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.page-container ul li div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.page-container ul li div form {
+  margin: 0;
+}
+button {
+  outline: none;
+} 
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

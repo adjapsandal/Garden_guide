@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+  <title>Новостной форум</title>
+  <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/forum.css">
+</head>
+
+<body>
+
+    {% include 'includes/header.html' %}
+
+
+  <div class="forum-body">
+        <h1>Форум</h1>
+            <div class="containe">
+                <div class="post">
+                {% for article in articles %}
+                <section class="grid">
+                    <article class="grid-item">
+                        <div class="info">
+                            <h2>{{ article.article_name }}</h2>
+                            <h3>{{ article.user_name }}</h3>
+                            <div class="info-text">
+                                <p>{{ article.article_text[:100] }}...</p>
+                            </div>
+                            <div class="button-wrap">
+                                <a class="atuin-btn" href="/forumposts/{{ article.article_num }}">Подробнее →</a>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+                {% endfor %}
+                </div>
+
+                <div class ="main-comment">
+                    <h2>Создать статью</h2>
+                        <form action="/topics" method="post">
+                            <div class="form-container">
+                                <label for="title">Заголовок топика:</label>
+                                <input type="text" id="title" name="title" required>
+                                <p>
+                                    <label for="content">Содержание топика:</label>
+                                    <textarea id="content" name="content" required></textarea>
+                                </p>
+                                <p>
+                                    <input type="submit" value="Создать топик">
+                                </p>
+                            </div>
+                        </form>
+                </div> 
+            </div> 
+  
+    </div>
+
+
+</body>
+</html>

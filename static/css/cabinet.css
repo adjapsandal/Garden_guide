@@ -1,0 +1,220 @@
+html {
+ box-sizing: border-box;
+}
+*,
+*::after,
+*::before {
+ box-sizing: inherit;
+}
+a {
+ text-decoration: none;
+}
+body {
+ min-height: 100vh;
+ background-repeat: no-repeat;
+ background-position: center center;
+ background-size: cover;
+ font-family: "Montserrat", sans-serif; 
+}
+.turbo{
+  width: 1190px;
+  flex-direction: row;
+}
+
+h1{
+  font-size: 40px;
+  display: inline-block;
+}
+
+.info{
+    display: inline-block;
+    margin-top: 30px;
+    margin-left: 150px;
+    font-family: 'Exo 2';
+}
+.nam{
+  font-size: 30px;  
+  display:inline-block;
+  margin-left: 30px;
+}
+.btn{
+   display: inline-block;
+}
+.izbrannoe{
+  margin-left: 150px;
+  margin-top: 50px;
+}
+.articles h1,
+.izbrannoe h1{
+  font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
+}
+.card {
+  width: 700px;
+  height: fit-content;
+  display: flex;
+  flex-direction: row; 
+  border-radius: 25px;
+  align-items: stretch;
+  margin-top: 10px;
+}
+.card:hover {
+  box-shadow: 4px 8px 16px rgba(255, 102, 51, 0.2);
+}
+.card__left {
+  flex: 0 0 200px;
+  position: relative;
+  height: 200px;
+  flex-direction: row;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  overflow: hidden; 
+}
+.card__image {
+  display: flex;
+  width: 160px;
+  height: 180px;
+  margin-left: 20px;
+  flex-grow:0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card__image > img {
+  width: 100%;
+  height: 100%;
+  flex-grow:0;
+  object-fit: cover;
+  border-radius: 25px;
+}
+.card__image:hover > img {
+  transform: scale(1.1);
+}
+.card__right {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto; 
+  padding: 10px;
+  justify-content: space-between;
+}
+.card-description{
+ padding: 0 0px; 
+ margin: 0 auto;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ flex:1;
+}
+.card__title h1 {
+  font-size: 24px; 
+  font-weight: bold;
+  display: inline-block;
+}
+.card__title h2{
+  font-size: 20px;
+  font-weight: 500;
+  color: black;
+  display: inline-block;
+}
+.card__text {
+  margin-bottom: 70px;
+  flex-grow: 0;
+  width: 450px;
+  font-weight: 400;
+  font-size: 17px;
+  color: black;
+  flex-wrap: wrap-reverse;
+  overflow: hidden;
+  display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+form{
+  display: inline-block;
+}
+
+button {
+  border-radius: 25px;
+  border: none;
+  background-color: #F0832C;
+  color: white;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+  width: 150px;
+  height: 35px;
+  display: block;
+  flex-grow:1;
+  margin-bottom: 10px;
+  top: 50px;
+  margin-left: 250px;
+}
+
+.izbr img{
+  display: inline-block;
+  width: 25px;
+  height: 26px;
+}
+.izbr{
+  background-color: white;
+  border: none;
+  width:20px;
+  height: 20px;
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 30px;
+}
+
+/* Cabinet page view selector */
+.cabinet-selector {
+  margin-left: 150px;
+  margin-top: 20px;
+}
+.cabinet-selector a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #333;
+  font-size: 20px;
+}
+.cabinet-selector a.active {
+  font-weight: bold;
+  color: #F0832C;
+  border-radius: 25px;
+  border: 2px solid #F0832C;
+  padding: 5px 10px;
+}
+
+/* Articles list styles */
+.articles {
+  margin-left: 150px;
+  margin-top: 50px;
+}
+.article-card {
+  border: 1px solid #F0832C;
+  border-radius: 25px;
+  padding: 10px;
+  margin-top: 10px;
+  width: 700px;
+}
+.article-date {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+.article-text {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+.article-actions a button,
+.article-actions form button {
+  margin-right: 10px;
+}
+.card__left > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 25px;
+}

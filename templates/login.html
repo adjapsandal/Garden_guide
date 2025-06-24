@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+<meta charset="utf-8">
+<title> Авторизация</title>
+<link href="/static/css/style.css" media="screen" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/header.css">
+<link rel="stylesheet" href="/static/css/login.css">
+<link href= 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+</head> 
+<body>
+    <header>
+        {% include 'includes/header.html' %}
+    </header>
+
+    <div class="log-body">
+            <div class="login">
+                <h1>Вход</h1>
+                    <form id="loginform" action="{{ url_for('login') }}" method="post">
+                        
+                        <p><label for="user_login">Email<br>
+                            <input class="input" id="email" name="email" size="20" type="email" value=""></label></p>
+                        <p><label for="user_pass">Пароль<br>
+                            <input class="input" id="password" name="password"size="20" type="password" value=""></label></p> 
+                        <button type="submit">Войти</button>
+                  
+	                    <p class="regtext">Еще не зарегистрированы?<a href= "/register">Регистрация</a>!</p>
+                    </form>
+                    
+            </div>
+        </div>
+</body>
+</html>

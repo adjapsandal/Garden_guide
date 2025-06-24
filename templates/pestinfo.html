@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/sort.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вредитель</title>
+</head>
+
+<body>
+    {% include 'includes/header.html' %}
+    <div class="container">
+        <div class="content">
+            <div class="card">
+                <div class="card__right">
+                    <div class="card__title">
+                        <h1>{{ detail.pest_name }}</h1>
+                    </div>
+                    <div class="card__text">{{ detail.pest_feature }}</div>
+                    <h3>Детали для культуры</h3>
+                    <p>{{ detail.details }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

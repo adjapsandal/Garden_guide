@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/register.css">
+
+</head>
+
+<body>
+    <header>
+        {% include 'includes/header.html' %}
+    </header>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <div class = "reg-body">
+    <div class="main">
+        <h2>Регистрация</h2>
+        <form id="registerform" action="/register" method="post">
+            <div class="form-container">
+                <div class ="left-column">
+            <label for="username">Имя:</label>
+            <input type="text" id="username" name="username" required />
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="password">Введите пароль:</label>
+            <input type="password" id="password" name="password"
+                   pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])\S{8,}$" 
+                   title="Password must contain at least one number, 
+                           one alphabet, one symbol, and be at 
+                           least 8 characters long" required />
+                    </div>
+                           <div class="right-column">
+                        <label for="mobile">Телефон:</label>
+            <input type="text" id="mobile" name="mobile" maxlength="18" required />
+
+            <label for="gender">Пол:</label>
+            <select id="gender" name="gender" required>
+                <option value="male">
+                    Муж
+                </option>
+                <option value="female">
+                    Жен
+                </option>
+                <option value="other">
+                    Другое
+                </option>
+            </select>
+            <label for="repassword">Введите пароль еще раз:</label>
+            <input type="password" id="repassword" name="repassword" required />
+</div>
+</div>
+            <button type="submit">
+                Подтвердить
+            </button>
+            <p>Уже зарегистрированы? <a href="/login">Войдите в систему</a>.</p>
+
+        </form>
+    </div>
+</div>
+<script>
+  const form = document.getElementById('registerform');
+  form.addEventListener('submit', function(e) {
+    const pw = form.password.value;
+    const repw = form.repassword.value;
+    if (pw !== repw) {
+      e.preventDefault();
+      alert('Пароли не совпадают');
+    }
+  });
+</script>
+</body>
+
+</html>

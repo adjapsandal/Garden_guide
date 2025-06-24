@@ -1,0 +1,34 @@
+<header class="header">
+  <div class="container">
+    <div class="header__inner">
+      <a class="logo" href="/">Путеводитель</a>
+      <a class="log" href="/">в мир огорода</a>
+      <nav class="menu">
+        <ul class="menu__list">
+          <li class="menu__list-item">
+            <a class="menu__list-link" href="/">Главная</a>
+          </li>
+          <li class="menu__list-item">
+            <a class="menu__list-link" href="/catalog">Каталог</a>
+          </li>
+          <li class="menu__list-item">
+            {% if is_agronomist %}
+              <a class="menu__list-link" href="/agronomist">
+                {{ agronomist_name }} ({{ agronomist_region_name }})
+              </a>
+            {% elif username %}
+              <a class="menu__list-link" href="/cabinet">
+                {{ username }}
+              </a>
+            {% else %}
+              <a class="menu__list-link" href="/login">Вход</a>
+            {% endif %}
+          </li>
+          <li class="menu__list-item">
+            <a class="menu__list-link" href="/forum">Форум</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

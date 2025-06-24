@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/catalog.css">
+    <title>Каталог</title>
+</head>
+
+<body>
+    <header>
+    {% include 'includes/header.html' %}
+    </header>
+    
+    <div class="catalog-body">
+    <div class="containe">
+        <div class="catalog-container">
+            <div class="sidebar">
+                <h1 class="catalog-header">Каталог</h1>
+                <aside class="filter-panel">
+                    <h2 class="filter-title">Фильтр</h2>
+                    <form method="get" id="filter-form">
+                        <h3>Регион</h3>
+                        <div class="scroll-section">
+                            <ul>
+                                {% for s in subjects %}
+                                <li>
+                                    <label>
+                                    <input
+                                        type="radio"
+                                        name="subject"
+                                        value="{{ s.subject_num }}"
+                                        onchange="this.form.submit()"
+                                        {% if s.subject_num == selected_subject %}checked{% endif %}>
+                                    {{ s.subject_name }}
+                                    </label>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    
+                        {% if plant_types %}
+                            <div class="filter-section">
+                                <h3>Категория</h3>
+                                <ul>
+                                {% for pt in plant_types %}
+                                    <li>
+                                    <label>
+                                        <input
+                                        type="radio"
+                                        name="plant_type"
+                                        value="{{ pt.plant_type_num }}"
+                                        onchange="this.form.submit()"
+                                        {% if pt.plant_type_num == selected_plant_type %}checked{% endif %}>
+                                        {{ pt.plant_type_name }}
+                                    </label>
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    
+                        {% if crops %}
+                            <h3>Культура</h3>
+                            <div class="scroll-section">
+                                <ul>
+                                {% for c in crops %}
+                                    <li>
+                                    <label>
+                                        <input
+                                        type="radio"
+                                        name="crop"
+                                        value="{{ c.crop_num }}"
+                                        onchange="this.form.submit()"
+                                        {% if c.crop_num == selected_crop %}checked{% endif %}>
+                                        {{ c.crop_name }}
+                                    </label>
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    
+                        {% if crops %}
+                            <h3>Показать</h3>
+                            <label>
+                                <input type="radio" name="display" value="sorts"
+                                    {% if selected_display=='sorts' %}checked{% endif %}
+                                    onchange="this.form.submit()">
+                                Сорта
+                            </label>
+                            <label>
+                                <input type="radio" name="display" value="pests"
+                                    {% if selected_display=='pests' %}checked{% endif %}
+                                    onchange="this.form.submit()">
+                                Вредители
+                            </label>
+                        {% endif %}
+                    </form>
+                </aside>
+            </div>
+        </div>
+
+
+        <div class="container">
+            {% if selected_display == 'sorts' %}
+                {% if sorts %}
+                    {% for s in sorts %}
+                        <div class="card">
+                            <div class="card__left">
+                                <img src="{{ s.plant_image_url }}"
+                                    alt="{{ s.plant_name }}">
+                            </div>
+                            <div class="card__right">
+                                <div class="card__title">
+                                    <h1>{{ s.plant_name }}, </h1>
+                                    <h2>{{ s.crop_name }}</h2>
+                                    <form action="{{ url_for('toggle_favourite') }}" method="post" style="display:inline-block; margin:0; padding:0;">
+                                        <input type="hidden" name="plant_num" value="{{ s.plant_num }}">
+                                        <input type="hidden" name="region" value="{{ selected_region }}">
+                                        {% if s.plant_num in favourites %}
+                                            <input type="hidden" name="action" value="remove">
+                                            <button type="submit" class="izbr"><img src="/static/img/star-1.png" alt="Удалить из избранного"></button>
+                                        {% else %}
+                                            <input type="hidden" name="action" value="add">
+                                            <button type="submit" class="izbr"><img src="/static/img/star-2.png" alt="Добавить в избранное"></button>
+                                        {% endif %}
+                                    </form>
+                                </div>
+                                <div class="card__text">{{ s.plant_feature }}</div>
+                                    <form action="{{ url_for('sortinfo') }}" method="get">
+                                        <input type="hidden" name="plant" value="{{ s.plant_num }}">
+                                        <input type="hidden" name="region" value="{{ selected_region }}">
+                                        <button type="submit">Подробнее</button>
+                                    </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Сортов не найдено для выбранных критериев.</p>
+                {% endif %}
+            {% endif %}
+
+            {% if selected_display == 'pests' %}
+                {% if pests %}
+                    {% for p in pests %}
+                        <div class="card">
+                            <div class="card__right">
+                                <div class="card__title"><h1>{{ p.pest_name }}</h1></div>
+                                <div class="card__text">{{ p.pest_feature }}</div>
+                                <form action="{{ url_for('pestinfo') }}" method="get">
+                                    <input type="hidden" name="crop" value="{{ selected_crop }}">
+                                    <input type="hidden" name="pest" value="{{ p.pest_num }}">
+                                    <button type="submit">Подробнее</button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Вредители не найдены для выбранных критериев.</p>
+                {% endif %}
+            {% endif %}
+
+        </div>
+    </div>
+</body>
+</html>

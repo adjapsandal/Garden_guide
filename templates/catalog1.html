@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" href="/static/css/catalog1.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог</title>
+</head>
+
+<body>
+    {% include 'includes/header.html' %}
+    <div class="container">
+        <h1 class="catalog-header">Каталог</h1>
+        <div class="sidebar">
+            <aside class="filter-panel">
+                <h2 class="filter-title">Фильтр</h2>
+                <h3>Регион</h3>
+                <div class="scroll-section">
+                    <ul>
+                        <li><label><input type="checkbox"> Республика Адыгея</label></li>
+                        <li><label><input type="checkbox"> Республика Башкортостан</label></li>
+                        <li><label><input type="checkbox"> Республика Бурятия</label></li>
+                        <li><label><input type="checkbox"> Республика Алтай</label></li>
+                        <li><label><input type="checkbox"> Республика Дагестан</label></li>
+                    </ul>
+                </div>
+                <div class="filter-section">
+                    <h3>Категория</h3>
+                    <ul>
+                        <li><label><input type="radio" name="category"> Фрукты</label></li>
+                        <li><label><input type="radio" name="category"> Овощи</label></li>
+                        <li><label><input type="radio" name="category"> Ягоды</label></li>
+                        <li><label><input type="radio" name="category"> Зелень</label></li>
+                    </ul>
+                </div>
+                <h3>Культура</h3>
+                <div class="scroll-section">
+                    <ul>
+                        <li><label><input type="checkbox"> Огурцы</label></li>
+                        <li><label><input type="checkbox"> Помидоры</label></li>
+                        <li><label><input type="checkbox"> Морковь</label></li>
+                        <li><label><input type="checkbox"> Капуста</label></li>
+                        <li><label><input type="checkbox"> Тыква</label></li>
+                        <li><label><input type="checkbox"> Кукуруза</label></li>
+                    </ul>
+                </div>
+                <div class="filter-section">
+                    <h3>Отобразить</h3>
+                    <ul>
+                        <li><label><input type="radio" name="display"> Сорта</label></li>
+                        <li><label><input type="radio" name="display"> Вредители</label></li>
+                    </ul>
+                </div>
+                <button class="apply-button">Применить</button>
+            </aside>
+            <div class="cards-wrapper">
+                <div class="card">
+                    <div class="card__left">
+                        <a href="#" class="card__image">
+                            <img src="/static/img/3jlz5_KFKSo.jpg" alt="Изображение сорта"/>
+                        </a>
+                    </div>
+                    <div class="card__right">
+                        <div class="card__description">
+                            <a href="#" class="card__title">Название, категория</a>
+                            <div class="card__text">Описание текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст</div>
+                            <form action="/sortinfo" target="_blank">
+                                <button type ="submit">Подробнее</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="card">
+                    <div class="card__left">
+                        <a href="#" class="card__image">
+                            <img src="/static/img/orig.png" alt="Изображение сорта"/>
+                        </a>
+                    </div>
+                    <div class="card__right">
+                        <div class="card__description">
+                            <a href="#" class="card__title">Название, категория</a>
+                            <div class="card__text">Описание текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст</div>
+                            <form action="/sortinfo" target="_blank">
+                                <button type ="submit">Подробнее</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="card">
+                    <div class="card__left">
+                        <a href="#" class="card__image">
+                            <img src="/static/img/b4fb4fb.png" alt="Изображение сорта"/>
+                        </a>
+                    </div>
+                    <div class="card__right">
+                        <div class="card__description">
+                            <a href="#" class="card__title">Название, категория</a>
+                            <div class="card__text">Описание текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст</div>
+                            <form action="/sortinfo" target="_blank">
+                                <button type ="submit">Подробнее</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    {% include 'includes/footer.html' %}
+</body>
+</html>

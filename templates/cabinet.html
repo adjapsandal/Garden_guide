@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/cabinet.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+</head>
+
+<body>
+    {% include 'includes/header.html' %}
+    <div class="turbo">
+        <div class="info">
+            <h1>Личный кабинет</h1>
+            <div class="nam">{{ username }}</div>
+            <form action="/logout">
+                <button class="btn">выход</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="cabinet-selector">
+        <a href="{{ url_for('cabinet', view='favourites') }}" class="{% if view != 'articles' %}active{% endif %}">Избранное</a>
+        <a href="{{ url_for('cabinet', view='articles') }}" class="{% if view == 'articles' %}active{% endif %}">Мои статьи</a>
+    </div>
+
+    {% if view != 'articles' %}
+    <div class="izbrannoe">
+        <h1>Избранное</h1>
+        {% if favourite_plants %}
+            {% for s in favourite_plants %}
+                <div class="card">
+                    <div class="card__left">
+                        <img src="{{ s.plant_image_url or '/static/img/default.png' }}"
+                            alt="{{ s.plant_name }}">
+                    </div>
+                    <div class="card__right">
+                        <div class="card__title">
+                            <h1>{{ s.plant_name }},</h1>
+                            <h2>{{ s.crop_name }}</h2>
+                            <form action="{{ url_for('toggle_favourite') }}" method="post" style="display:inline-block; margin:0; padding:0;">
+                                <input type="hidden" name="plant_num" value="{{ s.plant_num }}">
+                                <input type="hidden" name="region" value="{{ selected_region }}">
+                                <input type="hidden" name="action" value="remove">
+                                <button type="submit" class="izbr"><img src="/static/img/star-1.png" alt="Удалить из избранного"></button>
+                            </form>
+                        </div>
+                        <form action="{{ url_for('sortinfo') }}" method="get">
+                            <input type="hidden" name="plant" value="{{ s.plant_num }}">
+                            <input type="hidden" name="region" value="{{ selected_region }}">
+                            <button type="submit">Подробнее</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>У вас нет избранных сортов.</p>
+        {% endif %}
+    </div>
+    {% else %}
+    <div class="articles">
+        <h1>Мои статьи</h1>
+        {% if user_articles %}
+            {% for a in user_articles %}
+                <div class="article-card">
+                    <h2>{{ a.article_name }}</h2>
+                    <div class="article-date">{{ a.article_date }}</div>
+                    <div class="article-text">{{ a.article_text[:200] }}...</div>
+                    <div class="article-actions">
+                        <a href="{{ url_for('edit_article_route', article_num=a.article_num) }}"><button type="button">Редактировать</button></a>
+                        <form action="{{ url_for('delete_article_route', article_num=a.article_num) }}" method="post" style="display:inline;">
+                            <button type="submit">Удалить</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>У вас нет созданных статей.</p>
+        {% endif %}
+    </div>
+    {% endif %}
+</body>
+</html>

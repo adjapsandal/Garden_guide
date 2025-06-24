@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Новостной форум</title>
+      <link rel="stylesheet" href="/static/css/header.css">
+      <link rel="stylesheet" href="/static/css/forumposts.css">
+</head>
+
+<body>
+
+    {% include 'includes/header.html' %}
+
+
+  <div class="forum-body">
+    <h1>Форум</h1>
+    <div class="containe">
+      <div class="contain">
+        <h2>{{ article.article_name }}</h2>
+        <p class="article-text">{{ article.article_text }}</p>
+          <div class="forum-body">
+            <div class ="main">
+              <div id="commentForm" class="comment-form">
+                <form action="{{ url_for('add_comment_route', article_num=article.article_num) }}" method="post">
+                  <div class="form-container"> 
+                    <p>
+                      <label for="content">Содержание ответа:</label>
+                      <textarea id="content" name="content" required></textarea>
+                    </p>
+                    <p>
+                      <input type="submit" value="Отправить ответ">
+                    </p>
+                  </div>
+                </form>
+              </div>
+            </div>   
+          </div>  
+        </div>
+
+
+      <div class="comments-container" id="comments">
+        {% for comment in comments %}
+          <h1 class="nick">{{ comment.user_name }}{% if comment.comment_date %}, {{ comment.comment_date }}{% endif %}</h1>
+          <div class="comment">{{ comment.comment_text }}</div>
+        {% else %}
+          <p>Нет комментариев.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</body>
