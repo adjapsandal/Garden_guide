@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      # Postgres special envs to auto-create DB/user
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      # Если у тебя есть SQL инициализация, помести сюда SQL-файлы: ./db/init.sql
+      - ./db/initdb:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "${DB_PORT:-5432}:5432"
+
+  web:
+    build: .
+    depends_on:
+      - db
+    env_file:
+      - .env
+    environment:
+      # Перекрываем HOST для доступа к контейнеру db
+      DB_HOST: db
+      # Чтобы Flask видел переменные (опционально)
+      FLASK_ENV: development
+    volumes:
+      - ./:/app:cached
+    ports:
+      - "5000:5000"
+    # Для удобства: можно подождать пока БД отвечает. Но мы изменим db.py, чтобы не падать на старте.
+    command: flask run --host=0.0.0.0 --port=5000
+
+volumes:
+  db_data:

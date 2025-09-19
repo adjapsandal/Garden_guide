@@ -447,4 +447,4 @@ def edit_article_route(article_num):
     return render_template('edit_article.html', article=article)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=(os.environ.get("FLASK_ENV")=="development"))
